@@ -1,0 +1,241 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - link "DF Dirt Free CRM" [ref=e6] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e8] [cursor=pointer]: DF
+          - generic [ref=e9] [cursor=pointer]: Dirt Free CRM
+        - navigation "Main navigation" [ref=e13]:
+          - link "Dashboard icon Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+            - img "Dashboard icon" [ref=e17] [cursor=pointer]
+            - generic [ref=e22] [cursor=pointer]: Dashboard
+          - generic [ref=e23]:
+            - generic [ref=e24]: Operations
+            - generic [ref=e25]:
+              - link "Customers icon Customers" [ref=e26] [cursor=pointer]:
+                - /url: /customers
+                - img "Customers icon" [ref=e27] [cursor=pointer]
+                - generic [ref=e32] [cursor=pointer]: Customers
+              - link "Jobs icon Jobs" [ref=e33] [cursor=pointer]:
+                - /url: /jobs
+                - img "Jobs icon" [ref=e34] [cursor=pointer]
+                - generic [ref=e37] [cursor=pointer]: Jobs
+              - link "Invoices icon Invoices" [ref=e38] [cursor=pointer]:
+                - /url: /invoices
+                - img "Invoices icon" [ref=e39] [cursor=pointer]
+                - generic [ref=e42] [cursor=pointer]: Invoices
+          - generic [ref=e43]:
+            - generic [ref=e44]: Scheduling
+            - generic [ref=e45]:
+              - link "Calendar icon Calendar" [ref=e46] [cursor=pointer]:
+                - /url: /schedule/calendar
+                - img "Calendar icon" [ref=e47] [cursor=pointer]
+                - generic [ref=e49] [cursor=pointer]: Calendar
+              - link "Zone board icon Zone board" [ref=e50] [cursor=pointer]:
+                - /url: /schedule/zone-board
+                - img "Zone board icon" [ref=e51] [cursor=pointer]
+                - generic [ref=e54] [cursor=pointer]: Zone board
+          - generic [ref=e55]:
+            - generic [ref=e56]: Management
+            - generic [ref=e57]:
+              - link "Reminders icon Reminders" [ref=e58] [cursor=pointer]:
+                - /url: /reminders
+                - img "Reminders icon" [ref=e59] [cursor=pointer]
+                - generic [ref=e62] [cursor=pointer]: Reminders
+              - link "Trucks icon Trucks" [ref=e63] [cursor=pointer]:
+                - /url: /trucks
+                - img "Trucks icon" [ref=e64] [cursor=pointer]
+                - generic [ref=e69] [cursor=pointer]: Trucks
+              - link "Reports icon Reports" [ref=e70] [cursor=pointer]:
+                - /url: /reports
+                - img "Reports icon" [ref=e71] [cursor=pointer]
+                - generic [ref=e73] [cursor=pointer]: Reports
+          - generic [ref=e74]:
+            - generic [ref=e75]: System
+            - generic [ref=e76]:
+              - link "Settings icon Settings" [ref=e77] [cursor=pointer]:
+                - /url: /settings
+                - img "Settings icon" [ref=e78] [cursor=pointer]
+                - generic [ref=e81] [cursor=pointer]: Settings
+              - link "Users icon Users" [ref=e82] [cursor=pointer]:
+                - /url: /users
+                - img "Users icon" [ref=e83] [cursor=pointer]
+                - generic [ref=e95] [cursor=pointer]: Users
+              - link "Help icon Help" [ref=e96] [cursor=pointer]:
+                - /url: /help
+                - img "Help icon" [ref=e97] [cursor=pointer]
+                - generic [ref=e100] [cursor=pointer]: Help
+        - generic [ref=e102]: © 2025 Dirt Free CRM
+    - generic [ref=e103]:
+      - banner [ref=e104]:
+        - generic [ref=e105]:
+          - heading "Dashboard" [level=1] [ref=e107]
+          - generic [ref=e108]:
+            - button "Quick create" [ref=e109] [cursor=pointer]:
+              - img
+              - generic [ref=e110] [cursor=pointer]: Create
+            - button "Toggle theme" [ref=e111] [cursor=pointer]:
+              - img
+              - generic [ref=e112] [cursor=pointer]: Toggle theme
+            - button "View notifications" [ref=e113] [cursor=pointer]:
+              - generic [ref=e114] [cursor=pointer]:
+                - img "Notifications icon"
+                - generic [ref=e115] [cursor=pointer]: "3"
+            - button "Open user menu" [ref=e116] [cursor=pointer]:
+              - generic [ref=e117] [cursor=pointer]:
+                - img "User avatar"
+      - main [ref=e118]:
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - heading "Dashboard" [level=1] [ref=e127]
+                - paragraph [ref=e128]: Welcome back! Here's what's happening with your business today.
+              - button "Schedule Job" [ref=e130] [cursor=pointer]:
+                - img
+                - text: Schedule Job
+            - generic [ref=e131]:
+              - generic [ref=e132]:
+                - paragraph [ref=e133]: $45.2K
+                - paragraph [ref=e134]: Total Revenue
+              - generic [ref=e135]:
+                - paragraph [ref=e136]: 2,350
+                - paragraph [ref=e137]: Customers
+              - generic [ref=e138]:
+                - paragraph [ref=e139]: "573"
+                - paragraph [ref=e140]: Active Jobs
+              - generic [ref=e141]:
+                - paragraph [ref=e142]: 94.2%
+                - paragraph [ref=e143]: Retention Rate
+          - generic [ref=e145]:
+            - generic [ref=e146]:
+              - generic [ref=e149]:
+                - paragraph [ref=e150]: Total Revenue
+                - generic [ref=e151]:
+                  - paragraph [ref=e152]: $45,231
+                  - paragraph [ref=e153]: This month
+                - generic [ref=e155]:
+                  - img [ref=e156]
+                  - generic [ref=e159]: +20.1%
+              - generic [ref=e162]:
+                - paragraph [ref=e163]: New Customers
+                - generic [ref=e164]:
+                  - paragraph [ref=e165]: 2,350
+                  - paragraph [ref=e166]: Active accounts
+                - generic [ref=e168]:
+                  - img [ref=e169]
+                  - generic [ref=e172]: "-2.4%"
+              - generic [ref=e175]:
+                - paragraph [ref=e176]: Active Jobs
+                - generic [ref=e177]:
+                  - paragraph [ref=e178]: "573"
+                  - paragraph [ref=e179]: In progress
+                - generic [ref=e181]:
+                  - img [ref=e182]
+                  - generic [ref=e185]: +12.3%
+              - generic [ref=e188]:
+                - paragraph [ref=e189]: Growth Rate
+                - generic [ref=e190]:
+                  - paragraph [ref=e191]: 94.2%
+                  - paragraph [ref=e192]: Customer retention
+                - generic [ref=e194]:
+                  - img [ref=e195]
+                  - generic [ref=e196]: 0.0%
+            - generic [ref=e198]:
+              - generic [ref=e199]:
+                - generic [ref=e200]:
+                  - heading "Business Activity" [level=3] [ref=e201]
+                  - paragraph [ref=e202]: Track your business performance and growth trends over time
+                - tablist "Time range selection" [ref=e203]:
+                  - tab "7d" [ref=e204] [cursor=pointer]
+                  - tab "30d" [selected] [ref=e205] [cursor=pointer]
+                  - tab "3m" [ref=e206] [cursor=pointer]
+              - img "Business activity over 30d" [ref=e210]
+              - generic [ref=e213]:
+                - generic [ref=e214]: Daily metrics for the past 30 days
+                - generic [ref=e217]: Activity Level
+            - generic [ref=e218]:
+              - generic [ref=e220]:
+                - generic [ref=e221]:
+                  - generic [ref=e222]:
+                    - heading "Recent Activity" [level=3] [ref=e223]
+                    - paragraph [ref=e224]: Latest business updates and notifications
+                  - link "View All" [ref=e225] [cursor=pointer]:
+                    - /url: /reports/audit
+                    - text: View All
+                    - img
+                - generic [ref=e226]:
+                  - generic [ref=e227]:
+                    - img [ref=e229]
+                    - generic [ref=e232]:
+                      - paragraph [ref=e233]: Job completed for Sarah Johnson
+                      - paragraph [ref=e234]: 2 minutes ago
+                  - generic [ref=e235]:
+                    - img [ref=e237]
+                    - generic [ref=e242]:
+                      - paragraph [ref=e243]: New customer Mike Wilson added
+                      - paragraph [ref=e244]: 15 minutes ago
+                  - generic [ref=e245]:
+                    - img [ref=e247]
+                    - generic [ref=e250]:
+                      - paragraph [ref=e251]: "Invoice #INV-001 paid by Emma Davis"
+                      - paragraph [ref=e252]: 32 minutes ago
+                  - generic [ref=e253]:
+                    - img [ref=e255]
+                    - generic [ref=e257]:
+                      - paragraph [ref=e258]: Job scheduled for tomorrow at 10:00 AM
+                      - paragraph [ref=e259]: 1 hour ago
+                  - generic [ref=e260]:
+                    - img [ref=e262]
+                    - generic [ref=e265]:
+                      - paragraph [ref=e266]: "Truck #2 assigned to technician John"
+                      - paragraph [ref=e267]: 2 hours ago
+              - generic [ref=e269]:
+                - generic [ref=e270]:
+                  - heading "Quick Access" [level=3] [ref=e271]
+                  - paragraph [ref=e272]: Navigate to frequently used features
+                - generic [ref=e273]:
+                  - link "Customers Manage contacts & accounts" [ref=e274] [cursor=pointer]:
+                    - /url: /customers
+                    - img [ref=e276] [cursor=pointer]
+                    - generic [ref=e281] [cursor=pointer]:
+                      - generic [ref=e282] [cursor=pointer]: Customers
+                      - generic [ref=e283] [cursor=pointer]: Manage contacts & accounts
+                  - link "Jobs Track project progress" [ref=e284] [cursor=pointer]:
+                    - /url: /jobs
+                    - img [ref=e286] [cursor=pointer]
+                    - generic [ref=e289] [cursor=pointer]:
+                      - generic [ref=e290] [cursor=pointer]: Jobs
+                      - generic [ref=e291] [cursor=pointer]: Track project progress
+                  - link "Schedule View calendar & appointments" [ref=e292] [cursor=pointer]:
+                    - /url: /schedule/calendar
+                    - img [ref=e294] [cursor=pointer]
+                    - generic [ref=e296] [cursor=pointer]:
+                      - generic [ref=e297] [cursor=pointer]: Schedule
+                      - generic [ref=e298] [cursor=pointer]: View calendar & appointments
+                  - link "Reports Analytics & insights" [ref=e299] [cursor=pointer]:
+                    - /url: /reports
+                    - img [ref=e301] [cursor=pointer]
+                    - generic [ref=e304] [cursor=pointer]:
+                      - generic [ref=e305] [cursor=pointer]: Reports
+                      - generic [ref=e306] [cursor=pointer]: Analytics & insights
+                  - link "Invoices Billing & payments" [ref=e307] [cursor=pointer]:
+                    - /url: /invoices
+                    - img [ref=e309] [cursor=pointer]
+                    - generic [ref=e312] [cursor=pointer]:
+                      - generic [ref=e313] [cursor=pointer]: Invoices
+                      - generic [ref=e314] [cursor=pointer]: Billing & payments
+                  - link "Fleet Vehicle management" [ref=e315] [cursor=pointer]:
+                    - /url: /trucks
+                    - img [ref=e317] [cursor=pointer]
+                    - generic [ref=e320] [cursor=pointer]:
+                      - generic [ref=e321] [cursor=pointer]: Fleet
+                      - generic [ref=e322] [cursor=pointer]: Vehicle management
+  - region "Notifications alt+T"
+  - alert [ref=e323]
+```

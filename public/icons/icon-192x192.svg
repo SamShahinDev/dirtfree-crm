@@ -1,0 +1,6 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" rx="24" fill="#3060A0"/>
+  <rect x="24" y="24" width="144" height="144" rx="12" fill="#FFFFFF" fill-opacity="0.1"/>
+  <text x="96" y="105" font-family="system-ui, -apple-system" font-size="36" font-weight="bold" text-anchor="middle" fill="#FFFFFF">DF</text>
+  <text x="96" y="135" font-family="system-ui, -apple-system" font-size="14" text-anchor="middle" fill="#FFFFFF" opacity="0.8">CRM</text>
+</svg>

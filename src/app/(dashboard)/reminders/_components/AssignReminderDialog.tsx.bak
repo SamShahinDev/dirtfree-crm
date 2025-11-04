@@ -1,0 +1,315 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { User, UserCheck } from 'lucide-react'
+import { toast } from 'sonner'
+
+import { Button } from '@/components/ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from '@/components/ui/dialog'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
+import { Badge } from '@/components/ui/badge'
+import { Avatar, AvatarFallback, AvatarInitials } from '@/components/ui/avatar'
+
+import { getSupabaseBrowserClient } from '@/lib/supabase/client'
+import { assignReminder, type ReminderRow } from '../actions'
+import { AssignZ, type AssignInput } from '../schema'
+
+interface AssignReminderDialogProps {
+  open: boolean
+  onClose: () => void
+  onSuccess: () => void
+  reminder: ReminderRow
+}
+
+interface Technician {
+  id: string
+  name: string
+  email?: string
+  active?: boolean
+}
+
+export function AssignReminderDialog({
+  open,
+  onClose,
+  onSuccess,
+  reminder
+}: AssignReminderDialogProps) {
+  const [loading, setLoading] = useState(false)
+  const [technicians, setTechnicians] = useState<Technician[]>([])
+  const [loadingTechnicians, setLoadingTechnicians] = useState(false)
+
+  const form = useForm<AssignInput>({
+    resolver: zodResolver(AssignZ),
+    defaultValues: {
+      id: reminder.id,
+      technicianId: reminder.technician_id || ''
+    }
+  })
+
+  // Load technicians when dialog opens
+  useEffect(() => {
+    if (open) {
+      loadTechnicians()
+      form.reset({
+        id: reminder.id,
+        technicianId: reminder.technician_id || ''
+      })
+    }
+  }, [open, reminder, form])
+
+  const loadTechnicians = async () => {
+    try {
+      setLoadingTechnicians(true)
+
+      const supabase = getSupabaseBrowserClient()
+
+      // Get all active technicians
+      const { data: users, error } = await supabase
+        .from('users')
+        .select(`
+          id,
+          name,
+          email,
+          active,
+          user_roles!inner(role)
+        `)
+        .eq('user_roles.role', 'technician')
+        .eq('active', true)
+        .order('name')
+
+      if (error) {
+        console.error('Failed to load technicians:', error)
+        toast.error('Failed to load technicians')
+        return
+      }
+
+      const technicianList: Technician[] = (users || []).map((user: any) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        active: user.active
+      }))
+
+      setTechnicians(technicianList)
+    } catch (error) {
+      console.error('Failed to load technicians:', error)
+      toast.error('Failed to load technicians')
+    } finally {
+      setLoadingTechnicians(false)
+    }
+  }
+
+  const handleSubmit = async (data: AssignInput) => {
+    try {
+      setLoading(true)
+
+      const result = await assignReminder(data)
+
+      if (result.success) {
+        toast.success('Reminder assigned successfully')
+        onSuccess()
+        onClose()
+      } else {
+        toast.error(result.error)
+      }
+    } catch (error) {
+      console.error('Failed to assign reminder:', error)
+      toast.error('Failed to assign reminder')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleUnassign = async () => {
+    try {
+      setLoading(true)
+
+      const result = await assignReminder({
+        id: reminder.id,
+        technicianId: ''
+      })
+
+      if (result.success) {
+        toast.success('Reminder unassigned successfully')
+        onSuccess()
+        onClose()
+      } else {
+        toast.error(result.error)
+      }
+    } catch (error) {
+      console.error('Failed to unassign reminder:', error)
+      toast.error('Failed to unassign reminder')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const selectedTechnician = technicians.find(t => t.id === form.watch('technicianId'))
+
+  return (
+    <Dialog open={open} onOpenChange={onClose}>
+      <DialogContent className="rounded-lg p-6 max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <UserCheck className="h-5 w-5" />
+            Assign Reminder
+          </DialogTitle>
+          <DialogDescription>
+            Assign this reminder to a technician or leave unassigned.
+          </DialogDescription>
+        </DialogHeader>
+
+        {/* Current reminder info */}
+        <div className="rounded-lg border bg-muted/50 p-4 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">Customer:</span>
+            <span className="text-sm">{reminder.customer_name}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">Title:</span>
+            <span className="text-sm">{reminder.title}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">Scheduled:</span>
+            <span className="text-sm">{new Date(reminder.scheduled_date).toLocaleDateString()}</span>
+          </div>
+          {reminder.technician_name && (
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Currently assigned:</span>
+              <Badge variant="secondary">{reminder.technician_name}</Badge>
+            </div>
+          )}
+        </div>
+
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="technicianId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    Assign to Technician
+                  </FormLabel>
+                  <Select
+                    value={field.value || 'unassigned'}
+                    onValueChange={(value) => field.onChange(value === 'unassigned' ? '' : value)}
+                    disabled={loadingTechnicians}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder={loadingTechnicians ? "Loading technicians..." : "Select a technician"} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="unassigned">
+                        <div className="flex items-center gap-2">
+                          <User className="h-4 w-4 text-muted-foreground" />
+                          Unassigned
+                        </div>
+                      </SelectItem>
+                      {technicians.map((technician) => (
+                        <SelectItem key={technician.id} value={technician.id}>
+                          <div className="flex items-center gap-2">
+                            <Avatar className="h-6 w-6">
+                              <AvatarFallback>
+                                <AvatarInitials name={technician.name} />
+                              </AvatarFallback>
+                            </Avatar>
+                            <div className="flex flex-col">
+                              <span className="text-sm font-medium">{technician.name}</span>
+                              {technician.email && (
+                                <span className="text-xs text-muted-foreground">{technician.email}</span>
+                              )}
+                            </div>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Show selected technician info */}
+            {selectedTechnician && (
+              <div className="rounded-lg border bg-primary/5 p-3">
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback>
+                      <AvatarInitials name={selectedTechnician.name} />
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="text-sm font-medium">{selectedTechnician.name}</p>
+                    {selectedTechnician.email && (
+                      <p className="text-xs text-muted-foreground">{selectedTechnician.email}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </form>
+        </Form>
+
+        <DialogFooter className="flex-col sm:flex-row gap-2">
+          {reminder.technician_id && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleUnassign}
+              disabled={loading}
+              className="w-full sm:w-auto"
+            >
+              {loading ? 'Unassigning...' : 'Unassign'}
+            </Button>
+          )}
+          <div className="flex gap-2 w-full sm:w-auto">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              disabled={loading}
+              className="flex-1 sm:flex-none"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              onClick={form.handleSubmit(handleSubmit)}
+              disabled={loading || loadingTechnicians}
+              className="flex-1 sm:flex-none"
+            >
+              {loading ? 'Assigning...' : 'Assign'}
+            </Button>
+          </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}

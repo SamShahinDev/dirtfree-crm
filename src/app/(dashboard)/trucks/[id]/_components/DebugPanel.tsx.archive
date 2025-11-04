@@ -1,0 +1,214 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+
+interface DebugInfo {
+  truckId: string
+  totalThreads: number
+  thisThreads: number
+  allThreads: any[]
+  threadIds: string[]
+  truckIds: string[]
+  sessionUserId: string | null
+  error: any
+  queryResults: {
+    direct: any[]
+    filter: any[]
+    manualMatches: any[]
+  }
+}
+
+export default function DebugPanel({ truckId }: { truckId: string }) {
+  const [debugInfo, setDebugInfo] = useState<DebugInfo | null>(null)
+  const [loading, setLoading] = useState(false)
+  const supabase = createClient()
+
+  const runDebug = async () => {
+    setLoading(true)
+    console.log('=== VEHICLE BOARD COMPREHENSIVE DEBUG ===')
+    console.log('Current Truck ID:', truckId)
+    console.log('Truck ID Type:', typeof truckId)
+    console.log('Truck ID Length:', truckId?.length)
+    console.log('Is Valid UUID:', /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(truckId || ''))
+
+    try {
+      // 1. Check session
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+      console.log('Current session:', session)
+      console.log('Session user ID:', session?.user?.id)
+      console.log('Session error:', sessionError)
+
+      // 2. Check all threads in database
+      const { data: allThreads, error: allError } = await supabase
+        .from('truck_threads')
+        .select('id, truck_id, title, created_at, created_by')
+        .order('created_at', { ascending: false })
+
+      console.log('All threads in DB:', allThreads)
+      console.log('All threads error:', allError)
+
+      // 3. Check threads for this specific truck using direct .eq()
+      const { data: thisThreadsDirect, error: thisErrorDirect } = await supabase
+        .from('truck_threads')
+        .select('*')
+        .eq('truck_id', truckId)
+
+      console.log('Direct .eq() query result:', thisThreadsDirect)
+      console.log('Direct .eq() query error:', thisErrorDirect)
+
+      // 4. Try filter method
+      const { data: thisThreadsFilter, error: thisErrorFilter } = await supabase
+        .from('truck_threads')
+        .select('*')
+        .filter('truck_id', 'eq', truckId)
+
+      console.log('Filter method result:', thisThreadsFilter)
+      console.log('Filter method error:', thisErrorFilter)
+
+      // 5. Manual filtering for comparison
+      const manualMatches = allThreads ? allThreads.filter(t => t.truck_id === truckId) : []
+      console.log('Manual filter matches:', manualMatches)
+
+      // 6. Detailed comparison analysis
+      if (allThreads && allThreads.length > 0) {
+        console.log('=== DETAILED COMPARISON ANALYSIS ===')
+        allThreads.forEach((thread, index) => {
+          console.log(`Thread ${index + 1}:`)
+          console.log('  ID:', thread.id)
+          console.log('  truck_id:', thread.truck_id)
+          console.log('  truck_id type:', typeof thread.truck_id)
+          console.log('  truck_id === truckId:', thread.truck_id === truckId)
+          console.log('  truck_id.toString() === truckId:', thread.truck_id?.toString() === truckId)
+          console.log('  truckId === truck_id:', truckId === thread.truck_id)
+          console.log('  title:', thread.title)
+          console.log('  created_at:', thread.created_at)
+          console.log('  ---')
+        })
+      }
+
+      // 7. Check unique truck IDs
+      const uniqueTruckIds = allThreads ? [...new Set(allThreads.map(t => t.truck_id))] : []
+      console.log('Unique truck IDs in database:', uniqueTruckIds)
+      console.log('Is our truck ID in the list:', uniqueTruckIds.includes(truckId))
+
+      setDebugInfo({
+        truckId,
+        totalThreads: allThreads?.length || 0,
+        thisThreads: thisThreadsDirect?.length || 0,
+        allThreads: allThreads || [],
+        threadIds: allThreads ? allThreads.map(t => t.id) : [],
+        truckIds: uniqueTruckIds,
+        sessionUserId: session?.user?.id || null,
+        error: allError || thisErrorDirect || thisErrorFilter,
+        queryResults: {
+          direct: thisThreadsDirect || [],
+          filter: thisThreadsFilter || [],
+          manualMatches: manualMatches || []
+        }
+      })
+
+    } catch (error) {
+      console.error('Debug panel error:', error)
+      setDebugInfo({
+        truckId,
+        totalThreads: 0,
+        thisThreads: 0,
+        allThreads: [],
+        threadIds: [],
+        truckIds: [],
+        sessionUserId: null,
+        error: error,
+        queryResults: {
+          direct: [],
+          filter: [],
+          manualMatches: []
+        }
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    runDebug()
+  }, [truckId])
+
+  if (process.env.NODE_ENV !== 'development') return null
+
+  return (
+    <div className="bg-yellow-50 border border-yellow-200 p-4 mb-4 rounded">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="font-bold text-sm">🔧 Vehicle Board Debug Panel</h3>
+        <button
+          onClick={runDebug}
+          disabled={loading}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs disabled:opacity-50"
+        >
+          {loading ? 'Debugging...' : 'Refresh Debug'}
+        </button>
+      </div>
+
+      {debugInfo && (
+        <div className="space-y-2 text-xs">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p><strong>Current Truck ID:</strong> {debugInfo.truckId}</p>
+              <p><strong>Total Threads in DB:</strong> {debugInfo.totalThreads}</p>
+              <p><strong>Threads for This Truck:</strong> {debugInfo.thisThreads}</p>
+              <p><strong>Session User ID:</strong> {debugInfo.sessionUserId || 'None'}</p>
+            </div>
+            <div>
+              <p><strong>Direct Query Results:</strong> {debugInfo.queryResults.direct.length}</p>
+              <p><strong>Filter Query Results:</strong> {debugInfo.queryResults.filter.length}</p>
+              <p><strong>Manual Filter Results:</strong> {debugInfo.queryResults.manualMatches.length}</p>
+              <p><strong>Has Errors:</strong> {debugInfo.error ? 'Yes' : 'No'}</p>
+            </div>
+          </div>
+
+          {debugInfo.error && (
+            <div className="bg-red-100 border border-red-300 p-2 rounded">
+              <p className="font-semibold text-red-700">Error:</p>
+              <p className="text-red-600">{JSON.stringify(debugInfo.error, null, 2)}</p>
+            </div>
+          )}
+
+          {debugInfo.truckIds.length > 0 && (
+            <div>
+              <p className="font-semibold">Truck IDs in Database:</p>
+              <div className="bg-gray-100 p-2 rounded max-h-20 overflow-y-auto">
+                {debugInfo.truckIds.map((id, i) => (
+                  <div key={i} className={`${id === truckId ? 'bg-green-200 font-bold' : ''} px-1`}>
+                    {id} {id === truckId ? '← CURRENT' : ''}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <details className="border border-gray-300 rounded">
+            <summary className="cursor-pointer p-2 bg-gray-100 font-semibold">
+              Full Debug Data (Click to expand)
+            </summary>
+            <div className="p-2 max-h-64 overflow-auto">
+              <pre className="text-xs whitespace-pre-wrap">
+                {JSON.stringify(debugInfo, null, 2)}
+              </pre>
+            </div>
+          </details>
+
+          <details className="border border-gray-300 rounded">
+            <summary className="cursor-pointer p-2 bg-gray-100 font-semibold">
+              All Threads Raw Data (Click to expand)
+            </summary>
+            <div className="p-2 max-h-64 overflow-auto">
+              <pre className="text-xs whitespace-pre-wrap">
+                {JSON.stringify(debugInfo.allThreads, null, 2)}
+              </pre>
+            </div>
+          </details>
+        </div>
+      )}
+    </div>
+  )
+}

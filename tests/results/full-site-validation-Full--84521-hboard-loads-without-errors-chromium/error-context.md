@@ -1,0 +1,81 @@
+# Page snapshot
+
+```yaml
+- generic:
+  - generic [active]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - navigation [ref=e6]:
+            - button "previous" [disabled] [ref=e7]:
+              - img "previous" [ref=e8]
+            - generic [ref=e10]:
+              - generic [ref=e11]: 1/
+              - generic [ref=e12]: "1"
+            - button "next" [disabled] [ref=e13]:
+              - img "next" [ref=e14]
+          - img
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - img [ref=e18]
+            - generic "Latest available version is detected (15.5.3)." [ref=e20]: Next.js 15.5.3
+            - generic [ref=e21]: Webpack
+          - img
+      - dialog "Build Error" [ref=e23]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e30]: Build Error
+              - generic [ref=e31]:
+                - button "Copy Error Info" [ref=e32] [cursor=pointer]:
+                  - img [ref=e33] [cursor=pointer]
+                - link "Go to related documentation" [ref=e35] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/rendering/server-components
+                  - img [ref=e36] [cursor=pointer]
+                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
+                  - img [ref=e39] [cursor=pointer]
+            - paragraph [ref=e48]: "x You're importing a component that needs \"next/headers\". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components"
+          - generic [ref=e50]:
+            - generic [ref=e52]:
+              - img [ref=e54]
+              - generic [ref=e58]: ./src/lib/supabase/server.ts
+              - button "Open in editor" [ref=e59] [cursor=pointer]:
+                - img [ref=e61] [cursor=pointer]
+            - generic [ref=e64]:
+              - generic [ref=e65]: "Error:"
+              - generic [ref=e66]: x
+              - generic [ref=e67]:
+                - text: "You're importing a component that needs \"next/headers\". That only works in a Server Component which is not supported in the pages/ directory. Read more:"
+                - link "https://nextjs.org/docs/app/building-your-application/rendering/server-components" [ref=e68] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/rendering/server-components
+              - generic [ref=e69]: "|"
+              - generic [ref=e70]: ",-["
+              - generic [ref=e71]: /Users/royaltyvixion/Documents/dirt free carpet/dirt-free-crm/src/lib/supabase/server.ts
+              - generic [ref=e72]: :3:1]
+              - generic [ref=e73]: "1"
+              - generic [ref=e74]: "| import { createServerClient } from '@supabase/ssr'"
+              - generic [ref=e75]: "2"
+              - generic [ref=e76]: "| import { createClient as createSupabaseClient } from '@supabase/supabase-js'"
+              - generic [ref=e77]: "3"
+              - generic [ref=e78]: "| import { cookies } from 'next/headers' :"
+              - generic [ref=e79]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              - generic [ref=e81]: "4"
+              - generic [ref=e82]: "| import type { Database } from '@/types/supabase'"
+              - generic [ref=e83]: "5"
+              - generic [ref=e84]: "|"
+              - generic [ref=e85]: "6"
+              - generic [ref=e86]: "| function throwIfBrowser() { `----"
+        - generic [ref=e87]:
+          - generic [ref=e88]: "1"
+          - generic [ref=e89]: "2"
+    - generic [ref=e94] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e95] [cursor=pointer]:
+        - img [ref=e96] [cursor=pointer]
+      - button "Open issues overlay" [ref=e100] [cursor=pointer]:
+        - generic [ref=e101] [cursor=pointer]:
+          - generic [ref=e102] [cursor=pointer]: "0"
+          - generic [ref=e103] [cursor=pointer]: "1"
+        - generic [ref=e104] [cursor=pointer]: Issue
+  - alert [ref=e105]
+```

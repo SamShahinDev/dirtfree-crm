@@ -1,0 +1,7 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Maskable icon with safe zone - content within 80% of canvas -->
+  <rect width="512" height="512" fill="#3060A0"/>
+  <rect x="102" y="102" width="308" height="308" rx="24" fill="#FFFFFF" fill-opacity="0.15"/>
+  <text x="256" y="290" font-family="system-ui, -apple-system" font-size="80" font-weight="bold" text-anchor="middle" fill="#FFFFFF">DF</text>
+  <text x="256" y="340" font-family="system-ui, -apple-system" font-size="28" text-anchor="middle" fill="#FFFFFF" opacity="0.9">CRM</text>
+</svg>

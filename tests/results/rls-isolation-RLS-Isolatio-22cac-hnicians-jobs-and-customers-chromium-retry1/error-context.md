@@ -1,0 +1,66 @@
+# Page snapshot
+
+```yaml
+- generic:
+  - generic [active]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - navigation [ref=e6]:
+            - button "previous" [disabled] [ref=e7]:
+              - img "previous" [ref=e8]
+            - generic [ref=e10]:
+              - generic [ref=e11]: 1/
+              - generic [ref=e12]: "1"
+            - button "next" [disabled] [ref=e13]:
+              - img "next" [ref=e14]
+          - img
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - img [ref=e18]
+            - generic "Latest available version is detected (15.5.3)." [ref=e20]: Next.js 15.5.3
+            - generic [ref=e21]: Webpack
+          - img
+      - dialog "Build Error" [ref=e23]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e30]: Build Error
+              - generic [ref=e31]:
+                - button "Copy Error Info" [ref=e32] [cursor=pointer]:
+                  - img [ref=e33] [cursor=pointer]
+                - link "Go to related documentation" [ref=e35] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/messages/module-not-found
+                  - img [ref=e36] [cursor=pointer]
+                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e38] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
+                  - img [ref=e39] [cursor=pointer]
+            - paragraph [ref=e48]: "Module not found: Can't resolve '@/components/ui/checkbox'"
+          - generic [ref=e50]:
+            - generic [ref=e52]:
+              - img [ref=e54]
+              - generic [ref=e57]: ./src/app/(dashboard)/reports/_components/ZoneTechFilters.tsx (8:1)
+              - button "Open in editor" [ref=e58] [cursor=pointer]:
+                - img [ref=e60] [cursor=pointer]
+            - generic [ref=e63]:
+              - generic [ref=e64]:
+                - text: "Module not found: Can't resolve '@/components/ui/checkbox' 6 | import { Button } from '@/components/ui/button' 7 | import { Label } from '@/components/ui/label' > 8 | import { Checkbox } from '@/components/ui/checkbox' | ^ 9 | import { 10 | Select, 11 | SelectContent,"
+                - link "https://nextjs.org/docs/messages/module-not-found" [ref=e65] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/messages/module-not-found
+                - text: "Import trace for requested module:"
+              - link "./src/app/(dashboard)/reports/page.tsx" [ref=e66] [cursor=pointer]:
+                - text: ./src/app/(dashboard)/reports/page.tsx
+                - img [ref=e67] [cursor=pointer]
+        - generic [ref=e71]:
+          - generic [ref=e72]: "1"
+          - generic [ref=e73]: "2"
+    - generic [ref=e78] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e79] [cursor=pointer]:
+        - img [ref=e80] [cursor=pointer]
+      - button "Open issues overlay" [ref=e84] [cursor=pointer]:
+        - generic [ref=e85] [cursor=pointer]:
+          - generic [ref=e86] [cursor=pointer]: "0"
+          - generic [ref=e87] [cursor=pointer]: "1"
+        - generic [ref=e88] [cursor=pointer]: Issue
+  - alert [ref=e89]
+```

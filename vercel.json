@@ -1,0 +1,149 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/send-reminders",
+      "schedule": "0 8,12,16,20 * * *"
+    },
+    {
+      "path": "/api/cron/alerts",
+      "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/aggregate-portal-analytics",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/send-review-requests",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/review-reminders",
+      "schedule": "0 11 * * *"
+    },
+    {
+      "path": "/api/cron/review-escalations",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/process-opportunity-offers",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/process-opportunities",
+      "schedule": "0 */1 * * *"
+    },
+    {
+      "path": "/api/cron/opportunity-reminders",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/cleanup-old-jobs",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/process-tier-upgrades",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/process-achievements",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/process-referrals",
+      "schedule": "0 4 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?!.*\\.(vercel\\.app|dirt-free-crm\\.com)$).*"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "/dashboard",
+      "permanent": false
+    }
+  ],
+  "regions": ["iad1", "sfo1"],
+  "functions": {
+    "app/api/cron/send-reminders/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/alerts/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/cron/aggregate-portal-analytics/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/cron/send-review-requests/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/review-reminders/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/review-escalations/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/process-opportunity-offers/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/process-opportunities/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/cleanup-old-jobs/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/cron/opportunity-reminders/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/process-tier-upgrades/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/process-achievements/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/process-referrals/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/ops/samples/route.ts": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "NEXT_PUBLIC_VERCEL_ENV": "@vercel-env"
+  }
+}

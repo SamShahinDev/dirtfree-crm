@@ -1,0 +1,822 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand tokens */
+  --primary: 214 54% 41%; /* #3060A0 */
+  --primary-foreground: 0 0% 100%; /* White for AA contrast on primary */
+  --accent: 213 44% 61%; /* #7098C8 */
+  --accent-foreground: 0 0% 100%; /* White for AA contrast on accent */
+
+  /* Neutral scale */
+  --background: 0 0% 100%; /* White */
+  --foreground: 222 24% 9%; /* Near black for AA contrast */
+  --muted: 210 40% 96%; /* Light gray */
+  --muted-foreground: 215 16% 47%; /* Medium gray */
+  --card: 0 0% 100%; /* White */
+  --card-foreground: 222 24% 9%; /* Near black */
+  --popover: 0 0% 100%; /* White */
+  --popover-foreground: 222 24% 9%; /* Near black */
+  --border: 214 32% 91%; /* Light border */
+  --input: 214 32% 91%; /* Light input border */
+  --ring: 214 54% 41%; /* Primary for focus rings */
+  --radius: 0.5rem; /* 8px border radius */
+
+  /* Secondary mapping (using accent) */
+  --secondary: 210 40% 96%; /* Light muted */
+  --secondary-foreground: 215 16% 47%; /* Medium gray */
+
+  /* State tokens */
+  --success: 142 76% 36%; /* Green */
+  --success-foreground: 0 0% 100%; /* White */
+  --warning: 38 92% 50%; /* Orange */
+  --warning-foreground: 0 0% 100%; /* White */
+  --destructive: 0 84% 60%; /* Red */
+  --destructive-foreground: 0 0% 100%; /* White */
+
+  /* Interactive states for AA compliance */
+  --primary-hover: 214 54% 35%; /* Darker primary for hover */
+  --accent-hover: 213 44% 55%; /* Darker accent for hover */
+}
+
+.dark {
+  /* Brand tokens - dark theme */
+  --primary: 213 44% 61%; /* Lighter in dark mode */
+  --primary-foreground: 222 24% 9%; /* Dark text on light primary */
+  --accent: 214 54% 71%; /* Lighter accent */
+  --accent-foreground: 222 24% 9%; /* Dark text */
+
+  /* Neutral scale - dark theme */
+  --background: 222 24% 9%; /* Dark background */
+  --foreground: 210 40% 98%; /* Light text */
+  --muted: 217 33% 17%; /* Dark muted */
+  --muted-foreground: 215 20% 65%; /* Light muted text */
+  --card: 217 33% 17%; /* Dark card */
+  --card-foreground: 210 40% 98%; /* Light card text */
+  --popover: 217 33% 17%; /* Dark popover */
+  --popover-foreground: 210 40% 98%; /* Light popover text */
+  --border: 217 33% 17%; /* Dark border */
+  --input: 217 33% 17%; /* Dark input */
+  --ring: 213 44% 61%; /* Light ring for dark mode */
+
+  /* Secondary mapping */
+  --secondary: 217 33% 17%; /* Dark secondary */
+  --secondary-foreground: 210 40% 98%; /* Light secondary text */
+
+  /* State tokens - dark theme */
+  --success: 142 76% 46%; /* Brighter green */
+  --success-foreground: 222 24% 9%; /* Dark text */
+  --warning: 38 92% 60%; /* Brighter orange */
+  --warning-foreground: 222 24% 9%; /* Dark text */
+  --destructive: 0 84% 70%; /* Brighter red */
+  --destructive-foreground: 222 24% 9%; /* Dark text */
+
+  /* Interactive states */
+  --primary-hover: 213 44% 67%; /* Lighter primary for hover */
+  --accent-hover: 214 54% 77%; /* Lighter accent for hover */
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-inter), sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  p {
+    line-height: 1.75;
+    color: hsl(var(--foreground));
+  }
+
+  /* Typography Scale Classes with AA Contrast */
+  .h1 {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 1024px) {
+    .h1 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+
+  .h2 {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 768px) {
+    .h2 {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  .h3 {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 768px) {
+    .h3 {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+  }
+
+  .h4 {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 768px) {
+    .h4 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+  .label {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    text-transform: none; /* Sentence case, not all caps */
+  }
+
+  .label-sm {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    text-transform: none; /* Sentence case, not all caps */
+  }
+
+  .p {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    color: hsl(var(--foreground));
+  }
+
+  .p-sm {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .p-xs {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Display Typography (DM Sans) */
+  .display-1 {
+    font-family: var(--font-dm-sans), sans-serif;
+    font-size: 3.75rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 1024px) {
+    .display-1 {
+      font-size: 4.5rem;
+    }
+  }
+
+  .display-2 {
+    font-family: var(--font-dm-sans), sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  @media (min-width: 1024px) {
+    .display-2 {
+      font-size: 3.75rem;
+    }
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    outline: none;
+  }
+}
+
+@layer components {
+  /* Focus ring utility for AA compliance */
+  .focus-ring {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--ring)), 0 0 0 4px hsl(var(--background));
+  }
+
+  /* Interactive text styles with AA compliance */
+  .interactive-text {
+    color: hsl(var(--primary));
+    transition: color 0.2s ease;
+  }
+
+  .interactive-text:hover,
+  .interactive-text:focus {
+    color: hsl(var(--primary-hover));
+  }
+
+  .interactive-text:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--ring)), 0 0 0 4px hsl(var(--background));
+  }
+
+  /* Modern SaaS Design System Utilities */
+  .soft-card {
+    border-radius: calc(var(--radius) + 2px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    background-color: hsl(var(--card));
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1),
+      0 0 0 1px hsl(var(--border) / 0.05);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .soft-card:hover {
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1),
+      0 0 0 1px hsl(var(--border) / 0.1);
+    border-color: hsl(var(--border) / 0.8);
+  }
+
+  .section-card {
+    border-radius: calc(var(--radius) + 2px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    background-color: hsl(var(--card));
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1),
+      0 0 0 1px hsl(var(--border) / 0.05);
+    padding: 1.25rem;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .section-card:hover {
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1),
+      0 0 0 1px hsl(var(--border) / 0.1);
+    border-color: hsl(var(--border) / 0.8);
+  }
+
+  @media (min-width: 768px) {
+    .section-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-card {
+      padding: 2rem;
+    }
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .kpi-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .kpi-grid {
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .kpi-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  .app-canvas {
+    background-color: hsl(var(--muted) / 0.3);
+  }
+
+  /* Enhanced SaaS UI Patterns */
+  .dashboard-section {
+    position: relative;
+  }
+
+  .dashboard-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--border)) 20%, hsl(var(--border)) 80%, transparent 100%);
+    opacity: 0.5;
+  }
+
+  .metric-value {
+    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 1px 2px hsl(var(--foreground) / 0.1));
+  }
+
+  .gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: calc(var(--radius) + 2px);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--accent) / 0.2), hsl(var(--primary) / 0.1));
+    border-radius: inherit;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  /* Navigation Section Labels */
+  .nav-section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--muted-foreground) / 0.8);
+    padding: 0.75rem 0.75rem 0.25rem;
+    font-weight: 500;
+  }
+
+  /* Table Density */
+  .table-row {
+    height: 3rem;
+  }
+
+  .table-cell {
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Icon Consistency */
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .component-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@layer utilities {
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Display font utility */
+  .font-display {
+    font-family: var(--font-dm-sans), sans-serif;
+  }
+
+  /* Subtle background grid pattern */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+  }
+
+  /* Dot pattern for subtle texture */
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, hsl(var(--border) / 0.15) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  /* Premium card with enhanced shadows */
+  .premium-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: calc(var(--radius) + 4px);
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1),
+      0 0 0 1px hsl(var(--border) / 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .premium-card:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 8px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1),
+      0 0 0 1px hsl(var(--border) / 0.1);
+    border-color: hsl(var(--border) / 0.8);
+  }
+
+  /* Hero gradient background */
+  .hero-gradient {
+    background: linear-gradient(135deg,
+      hsl(var(--primary) / 0.05) 0%,
+      hsl(var(--accent) / 0.03) 35%,
+      hsl(var(--muted) / 0.4) 100%);
+  }
+
+  /* Metric card with enhanced styling */
+  .metric-card {
+    background: linear-gradient(135deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--card) / 0.98) 100%);
+    border: 1px solid hsl(var(--border) / 0.6);
+    border-radius: calc(var(--radius) + 2px);
+    box-shadow:
+      0 2px 4px -1px rgb(0 0 0 / 0.08),
+      0 1px 2px -1px rgb(0 0 0 / 0.04),
+      inset 0 1px 0 hsl(var(--border) / 0.1);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.3) 50%,
+      transparent 100%);
+  }
+
+  .metric-card:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow:
+      0 8px 25px -8px rgb(0 0 0 / 0.12),
+      0 4px 12px -4px rgb(0 0 0 / 0.08),
+      inset 0 1px 0 hsl(var(--border) / 0.15);
+    border-color: hsl(var(--border) / 0.8);
+  }
+
+  /* Chart area styling */
+  .chart-container {
+    background: linear-gradient(135deg,
+      hsl(var(--muted) / 0.3) 0%,
+      hsl(var(--muted) / 0.1) 100%);
+    border: 1px solid hsl(var(--border) / 0.3);
+    border-radius: calc(var(--radius) + 1px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%,
+      hsl(var(--primary) / 0.03) 0%,
+      transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Activity item styling */
+  .activity-item {
+    padding: 0.875rem;
+    border-radius: calc(var(--radius) + 1px);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .activity-item:hover {
+    background: hsl(var(--muted) / 0.5);
+    border-color: hsl(var(--border) / 0.5);
+    transform: translateX(4px);
+  }
+
+  /* Quick link card styling */
+  .quick-link-card {
+    background: linear-gradient(135deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--card) / 0.95) 100%);
+    border: 1px solid hsl(var(--border) / 0.6);
+    border-radius: calc(var(--radius) + 2px);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quick-link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+      hsl(var(--primary) / 0.05) 0%,
+      transparent 50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .quick-link-card:hover::before {
+    opacity: 1;
+  }
+
+  .quick-link-card:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow:
+      0 8px 25px -8px rgb(0 0 0 / 0.1),
+      0 4px 12px -4px rgb(0 0 0 / 0.08);
+  }
+
+  /* Modern SaaS Card Utilities */
+  .glass-card {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(255 255 255 / 0.1);
+  }
+
+  .hover-lift {
+    transition: all 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+  }
+
+  .gradient-mesh {
+    background-image:
+      radial-gradient(at 40% 20%, hsla(var(--primary), 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 80%, hsla(var(--accent), 0.05) 0px, transparent 50%);
+  }
+
+  /* Enhanced metric card styling */
+  .metric-card-enhanced {
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.95) 100%);
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: calc(var(--radius) + 2px);
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card-enhanced:hover {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow:
+      0 10px 25px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -2px rgb(0 0 0 / 0.05);
+    border-color: hsl(var(--border) / 0.8);
+  }
+
+  /* Premium card with enhanced depth */
+  .premium-card-enhanced {
+    background: linear-gradient(135deg, hsl(var(--card) / 0.95) 0%, hsl(var(--card) / 0.8) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: calc(var(--radius) + 4px);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1),
+      inset 0 1px 0 hsl(var(--border) / 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .premium-card-enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1),
+      inset 0 1px 0 hsl(var(--border) / 0.15);
+    border-color: hsl(var(--border) / 0.8);
+  }
+}
+
+/* Diagnostic test class */
+.test-custom-class {
+  padding: 20px;
+  background-color: #fbbf24;
+  color: #1f2937;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Fix button clickability issues */
+button {
+  position: relative;
+  cursor: pointer !important;
+}
+
+/* Ensure button children don't interfere with clicks */
+button * {
+  pointer-events: none;
+}
+
+/* Fix for dialog/popover triggers */
+[role="button"] {
+  cursor: pointer !important;
+  position: relative;
+}
+
+/* Ensure popovers and dialogs appear above everything */
+[data-radix-popover-content],
+[data-radix-dialog-content],
+[data-radix-dialog-overlay],
+[data-radix-select-content] {
+  z-index: 50 !important;
+}
+
+/* Fix select trigger clickability */
+[data-state="closed"] > button,
+[data-state="open"] > button {
+  cursor: pointer !important;
+}
+
+/* Ensure dropdowns are on top */
+[role="listbox"],
+[role="menu"] {
+  z-index: 50 !important;
+}
+
+/* Enhanced button hover states for better feedback */
+button:hover:not(:disabled) {
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+/* Ensure all interactive elements are clickable */
+button,
+[role="button"],
+[type="button"],
+[type="submit"] {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fix for shadcn/ui button components */
+.inline-flex.items-center.justify-center {
+  position: relative;
+  z-index: 1;
+}
+
+/* Debug: Add visible outline to all buttons (remove after testing) */
+button,
+[role="button"] {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline-color: hsl(var(--primary));
+}
+
+/* Calendar date picker improvements */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: hsl(var(--primary));
+  --rdp-background-color: hsl(var(--accent));
+}
+
+.rdp-day {
+  width: var(--rdp-cell-size);
+  height: var(--rdp-cell-size);
+  font-size: 0.875rem;
+}
+
+.rdp-cell {
+  padding: 2px;
+}
+
+.rdp-head_cell {
+  width: var(--rdp-cell-size);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.rdp-caption {
+  margin-bottom: 1rem;
+}
+
+/* Map popup styling */
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+.mapboxgl-popup-tip {
+  display: none !important;
+}
+
+/* Map marker animations */
+@keyframes pulse-blue {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Smooth map transitions */
+.mapboxgl-map {
+  transition: all 0.3s ease;
+}

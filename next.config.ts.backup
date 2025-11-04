@@ -1,0 +1,67 @@
+import type { NextConfig } from "next";
+import withPWA from 'next-pwa';
+import { withSentryConfig } from '@sentry/nextjs';
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+const configWithPWA = withPWA({
+  dest: 'public',
+  sw: 'sw.js',
+  disable: process.env.NODE_ENV === 'development',
+  register: true,
+  skipWaiting: true,
+  runtimeCaching: [
+    {
+      urlPattern: /^https?.*/,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'offlineCache',
+        expiration: {
+          maxEntries: 200,
+          maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        },
+      },
+    },
+  ],
+})(nextConfig as any);
+
+// Wrap with Sentry configuration
+const config = withSentryConfig(configWithPWA, {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options
+
+  // Suppresses source map uploading logs during build
+  silent: true,
+
+  // Upload source maps in production only
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+
+  // An auth token is required for uploading source maps.
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  // Enable automatic Instrumentation
+  automaticVercelMonitors: false,
+}, {
+  // For all available options, see:
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  // Transpiles SDK to be compatible with IE11 (increases bundle size)
+  transpileClientSDK: false,
+
+  // Hides source maps from generated client bundles
+  hideSourceMaps: process.env.NODE_ENV === 'production',
+
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: process.env.NODE_ENV === 'production',
+
+  // Enables automatic instrumentation of Vercel Cron Monitors.
+  automaticVercelMonitors: false,
+});
+
+export default config;

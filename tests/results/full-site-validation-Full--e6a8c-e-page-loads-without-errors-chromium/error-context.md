@@ -1,0 +1,202 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - link "DF Dirt Free CRM" [ref=e6] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e8] [cursor=pointer]: DF
+          - generic [ref=e9] [cursor=pointer]: Dirt Free CRM
+        - navigation "Main navigation" [ref=e13]:
+          - link "Dashboard icon Dashboard" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+            - img "Dashboard icon" [ref=e17] [cursor=pointer]
+            - generic [ref=e22] [cursor=pointer]: Dashboard
+          - generic [ref=e23]:
+            - generic [ref=e24]: Operations
+            - generic [ref=e25]:
+              - link "Customers icon Customers" [ref=e26] [cursor=pointer]:
+                - /url: /customers
+                - img "Customers icon" [ref=e27] [cursor=pointer]
+                - generic [ref=e32] [cursor=pointer]: Customers
+              - link "Jobs icon Jobs" [ref=e33] [cursor=pointer]:
+                - /url: /jobs
+                - img "Jobs icon" [ref=e34] [cursor=pointer]
+                - generic [ref=e37] [cursor=pointer]: Jobs
+              - link "Invoices icon Invoices" [ref=e38] [cursor=pointer]:
+                - /url: /invoices
+                - img "Invoices icon" [ref=e39] [cursor=pointer]
+                - generic [ref=e42] [cursor=pointer]: Invoices
+          - generic [ref=e43]:
+            - generic [ref=e44]: Scheduling
+            - generic [ref=e45]:
+              - link "Calendar icon Calendar" [ref=e46] [cursor=pointer]:
+                - /url: /schedule/calendar
+                - img "Calendar icon" [ref=e47] [cursor=pointer]
+                - generic [ref=e49] [cursor=pointer]: Calendar
+              - link "Zone board icon Zone board" [ref=e50] [cursor=pointer]:
+                - /url: /schedule/zone-board
+                - img "Zone board icon" [ref=e51] [cursor=pointer]
+                - generic [ref=e54] [cursor=pointer]: Zone board
+          - generic [ref=e55]:
+            - generic [ref=e56]: Management
+            - generic [ref=e57]:
+              - link "Reminders icon Reminders" [ref=e58] [cursor=pointer]:
+                - /url: /reminders
+                - img "Reminders icon" [ref=e59] [cursor=pointer]
+                - generic [ref=e62] [cursor=pointer]: Reminders
+              - link "Trucks icon Trucks" [ref=e63] [cursor=pointer]:
+                - /url: /trucks
+                - img "Trucks icon" [ref=e64] [cursor=pointer]
+                - generic [ref=e69] [cursor=pointer]: Trucks
+              - link "Reports icon Reports" [ref=e70] [cursor=pointer]:
+                - /url: /reports
+                - img "Reports icon" [ref=e71] [cursor=pointer]
+                - generic [ref=e73] [cursor=pointer]: Reports
+          - generic [ref=e74]:
+            - generic [ref=e75]: System
+            - generic [ref=e76]:
+              - link "Settings icon Settings" [ref=e77] [cursor=pointer]:
+                - /url: /settings
+                - img "Settings icon" [ref=e78] [cursor=pointer]
+                - generic [ref=e81] [cursor=pointer]: Settings
+              - link "Users icon Users" [ref=e82] [cursor=pointer]:
+                - /url: /users
+                - img "Users icon" [ref=e83] [cursor=pointer]
+                - generic [ref=e95] [cursor=pointer]: Users
+              - link "Help icon Help" [ref=e96] [cursor=pointer]:
+                - /url: /help
+                - img "Help icon" [ref=e97] [cursor=pointer]
+                - generic [ref=e100] [cursor=pointer]: Help
+        - generic [ref=e102]: © 2025 Dirt Free CRM
+    - generic [ref=e103]:
+      - banner [ref=e104]:
+        - generic [ref=e105]:
+          - heading "Dashboard" [level=1] [ref=e107]
+          - generic [ref=e108]:
+            - button "Quick create" [ref=e109] [cursor=pointer]:
+              - img
+              - generic [ref=e110] [cursor=pointer]: Create
+            - button "Toggle theme" [ref=e111] [cursor=pointer]:
+              - img
+              - generic [ref=e112] [cursor=pointer]: Toggle theme
+            - button "View notifications" [ref=e113] [cursor=pointer]:
+              - generic [ref=e114] [cursor=pointer]:
+                - img "Notifications icon"
+                - generic [ref=e115] [cursor=pointer]: "3"
+            - button "Open user menu" [ref=e116] [cursor=pointer]:
+              - generic [ref=e117] [cursor=pointer]:
+                - img "User avatar"
+      - main [ref=e118]:
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - heading "Dirt Free CRM" [level=1] [ref=e123]
+            - button "Toggle theme" [ref=e124] [cursor=pointer]:
+              - img
+              - generic [ref=e125] [cursor=pointer]: Toggle theme
+          - main [ref=e126]:
+            - generic [ref=e127]:
+              - heading "Modern CRM for Carpet Cleaning" [level=2] [ref=e128]
+              - paragraph [ref=e129]: Streamline your carpet cleaning business with our comprehensive CRM solution. Manage customers, schedule appointments, track jobs, and grow your business.
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - heading "Customer Management" [level=3] [ref=e132]
+                - paragraph [ref=e133]: Keep track of all your customers, their contact information, service history, and preferences.
+              - generic [ref=e134]:
+                - heading "Job Scheduling" [level=3] [ref=e135]
+                - paragraph [ref=e136]: Schedule and manage carpet cleaning appointments with an intuitive calendar interface.
+              - generic [ref=e137]:
+                - heading "Invoice & Billing" [level=3] [ref=e138]
+                - paragraph [ref=e139]: Generate professional invoices and track payments to keep your business running smoothly.
+  - region "Notifications alt+T"
+  - generic [active]:
+    - generic [ref=e142]:
+      - generic [ref=e143]:
+        - generic [ref=e144]:
+          - navigation [ref=e145]:
+            - button "previous" [disabled] [ref=e146]:
+              - img "previous" [ref=e147]
+            - generic [ref=e149]:
+              - generic [ref=e150]: 1/
+              - generic [ref=e151]: "1"
+            - button "next" [disabled] [ref=e152]:
+              - img "next" [ref=e153]
+          - img
+        - generic [ref=e155]:
+          - generic [ref=e156]:
+            - img [ref=e157]
+            - generic "Latest available version is detected (15.5.3)." [ref=e159]: Next.js 15.5.3
+            - generic [ref=e160]: Webpack
+          - img
+      - dialog "Build Error" [ref=e162]:
+        - generic [ref=e165]:
+          - generic [ref=e166]:
+            - generic [ref=e167]:
+              - generic [ref=e169]: Build Error
+              - generic [ref=e170]:
+                - button "Copy Error Info" [ref=e171] [cursor=pointer]:
+                  - img [ref=e172] [cursor=pointer]
+                - link "Go to related documentation" [ref=e174] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/rendering/server-components
+                  - img [ref=e175] [cursor=pointer]
+                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e177] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
+                  - img [ref=e178] [cursor=pointer]
+            - paragraph [ref=e187]: "x You're importing a component that needs \"next/headers\". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components"
+          - generic [ref=e189]:
+            - generic [ref=e191]:
+              - img [ref=e193]
+              - generic [ref=e197]: ./src/lib/supabase/server.ts
+              - button "Open in editor" [ref=e198] [cursor=pointer]:
+                - img [ref=e200] [cursor=pointer]
+            - generic [ref=e203]:
+              - generic [ref=e204]: "Error:"
+              - generic [ref=e205]: x
+              - generic [ref=e206]:
+                - text: "You're importing a component that needs \"next/headers\". That only works in a Server Component which is not supported in the pages/ directory. Read more:"
+                - link "https://nextjs.org/docs/app/building-your-application/rendering/server-components" [ref=e207] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/rendering/server-components
+              - generic [ref=e208]: "|"
+              - generic [ref=e209]: ",-["
+              - generic [ref=e210]: /Users/royaltyvixion/Documents/dirt free carpet/dirt-free-crm/src/lib/supabase/server.ts
+              - generic [ref=e211]: :3:1]
+              - generic [ref=e212]: "1"
+              - generic [ref=e213]: "| import { createServerClient } from '@supabase/ssr'"
+              - generic [ref=e214]: "2"
+              - generic [ref=e215]: "| import { createClient as createSupabaseClient } from '@supabase/supabase-js'"
+              - generic [ref=e216]: "3"
+              - generic [ref=e217]: "| import { cookies } from 'next/headers' :"
+              - generic [ref=e218]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              - generic [ref=e220]: "4"
+              - generic [ref=e221]: "| import type { Database } from '@/types/supabase'"
+              - generic [ref=e222]: "5"
+              - generic [ref=e223]: "|"
+              - generic [ref=e224]: "6"
+              - generic [ref=e225]: "| function throwIfBrowser() { `---- Import trace for requested module:"
+              - link "./src/lib/supabase/server.ts" [ref=e226] [cursor=pointer]:
+                - text: ./src/lib/supabase/server.ts
+                - img [ref=e227] [cursor=pointer]
+              - link "./src/lib/comms/templates-store.ts" [ref=e231] [cursor=pointer]:
+                - text: ./src/lib/comms/templates-store.ts
+                - img [ref=e232] [cursor=pointer]
+              - link "./src/app/(comms)/templates.ts" [ref=e236] [cursor=pointer]:
+                - text: ./src/app/(comms)/templates.ts
+                - img [ref=e237] [cursor=pointer]
+              - link "./src/app/settings/_components/SmsTestPanel.tsx" [ref=e241] [cursor=pointer]:
+                - text: ./src/app/settings/_components/SmsTestPanel.tsx
+                - img [ref=e242] [cursor=pointer]
+        - generic [ref=e246]:
+          - generic [ref=e247]: "1"
+          - generic [ref=e248]: "2"
+    - generic [ref=e253] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e254] [cursor=pointer]:
+        - img [ref=e255] [cursor=pointer]
+      - button "Open issues overlay" [ref=e259] [cursor=pointer]:
+        - generic [ref=e260] [cursor=pointer]:
+          - generic [ref=e261] [cursor=pointer]: "0"
+          - generic [ref=e262] [cursor=pointer]: "1"
+        - generic [ref=e263] [cursor=pointer]: Issue
+  - alert [ref=e264]
+```
